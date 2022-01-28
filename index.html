@@ -16,9 +16,17 @@
     </div>
     <script>
         var game = document.getElementById('game');
-        var p = document.getElementById('gamep')
+        var p = document.getElementById('gamep');
 
-        var state = 'blue'
+        var milli = 0;
+
+        var state = 'blue';
+
+        setInterval(addMilli,1);
+        function addMilli(){
+            milli += 1;
+        }
+
 
         game.onclick = function(e){
             if (state == 'blue') {
