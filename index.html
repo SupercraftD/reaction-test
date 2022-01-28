@@ -27,6 +27,8 @@
 
         var highest = 99999999999
 
+        var gameint;
+
         var m = 0;
 
         var startm;
@@ -40,6 +42,7 @@
                 game.style.backgroundColor = 'blue'
                 p.innerHTML = 'Click to start'
                 startm = 0;
+                clearTimeout(gameint)
                 alert('wait for it to turn green!')
             }else if (state=='green'){
                 document.getElementById('latesttime').innerHTML = 'Last Time: '+ (m - startm).toString() + 'ms'
@@ -57,7 +60,7 @@
             game.style.backgroundColor = 'red';
             state = 'red'
             p.innerHTML = 'Wait for it...'
-            setTimeout(React,(Math.floor(Math.random() * (5 - 1) ) + 1)*1000);
+            gameint = setTimeout(React,(Math.floor(Math.random() * (5 - 1) ) + 1)*1000);
         }
         function React(){
             state = 'green'
@@ -67,7 +70,7 @@
         }
 
         var start = Date.now();
-        setInterval(function() {
+        dateinterval = setInterval(function() {
             var delta = Date.now() - start; 
             m = delta;
         }, 10);
