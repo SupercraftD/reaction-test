@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reaction Test</title>
 </head>
-<body>
+<body style="background-color: lightcyan;">
     <h1 style='text-align: center;'>Reaction Test!</h1>
     <h2 style='text-align: center;'>When the box turns green, click as fast as you can</h2>
 
@@ -14,18 +14,22 @@
     <div id='game' style='background-color: blue; height: 300px;' class='game'>
         <p id='gamep' style='text-align: center;line-height: 300px; font-size: larger;'>Click to start</p>
     </div>
+    <hr/>
+    <div style='text-align: center;' class='labels'>
+        <h3 id='latesttime'>Last Time: 0ms</h3>
+        <h3 id='highesttime'>High Score: 0ms</h3>
+    </div>
     <script>
+
         var game = document.getElementById('game');
         var p = document.getElementById('gamep');
-
-        var milli = 0;
-
         var state = 'blue';
 
-        setInterval(addMilli,1);
-        function addMilli(){
-            milli += 1;
-        }
+        var highest = 99999999999
+
+        var m = 0;
+
+        var startm;
 
 
         game.onclick = function(e){
@@ -35,6 +39,15 @@
                 state = 'blue'
                 game.style.backgroundColor = 'blue'
                 alert('wait for it to turn green!')
+            }else if (state=='green'){
+                document.getElementById('latesttime').innerHTML = 'Last Time: '+ (m - startm).toString() + 'ms'
+                if ((m - startm) < highest){
+                    highest = m-startm
+                    document.getElementById('highesttime').innerHTML = "High Score: " + highest.toString() + 'ms'
+                }
+                state = 'blue'
+                game.style.backgroundColor = 'blue'
+                p.innerHTML = 'Click to start'
             }
         }
 
@@ -42,14 +55,22 @@
             game.style.backgroundColor = 'red';
             state = 'red'
             p.innerHTML = 'Wait for it...'
-            setTimeout(React,Math.random()*6)
+            setTimeout(React,(Math.floor(Math.random() * (5 - 1) ) + 1)*1000);
         }
         function React(){
             state = 'green'
             game.style.backgroundColor = 'green'
+            p.innerHTML = 'CLICK!'
+            startm = m
         }
 
+        var start = Date.now();
+        setInterval(function() {
+            var delta = Date.now() - start; 
+            m = delta;
+        }, 10);
+
+
     </script>
-    <hr/>
 </body>
 </html>
