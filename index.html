@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Test</title>
+</head>
+<body>
+    <h1 style='text-align: center;'>Reaction Test!</h1>
+    <h2 style='text-align: center;'>When the box turns green, click as fast as you can</h2>
+
+    <hr/>
+    <div id='game' style='background-color: blue; height: 300px;' class='game'>
+        <p id='gamep' style='text-align: center;line-height: 300px; font-size: larger;'>Click to start</p>
+    </div>
+    <script>
+        var game = document.getElementById('game');
+        var p = document.getElementById('gamep')
+
+        var state = 'blue'
+
+        game.onclick = function(e){
+            if (state == 'blue') {
+                startGame();
+            }else if (state == 'red'){
+                state = 'blue'
+                game.style.backgroundColor = 'blue'
+                alert('wait for it to turn green!')
+            }
+        }
+
+        function startGame(){
+            game.style.backgroundColor = 'red';
+            state = 'red'
+            p.innerHTML = 'Wait for it...'
+            setTimeout(React,Math.random()*6)
+        }
+        function React(){
+            state = 'green'
+            game.style.backgroundColor = 'green'
+        }
+
+    </script>
+    <hr/>
+</body>
+</html>
