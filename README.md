@@ -12,3 +12,6 @@ press the box to start
 when it turns green, react and click it
 
 Note: high score does not save. Too lazy to do that.
+
+
+Play at: https://supercraftd.github.io/reaction-test/
