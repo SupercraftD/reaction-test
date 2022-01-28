@@ -38,6 +38,8 @@
             }else if (state == 'red'){
                 state = 'blue'
                 game.style.backgroundColor = 'blue'
+                p.innerHTML = 'Click to start'
+                startm = 0;
                 alert('wait for it to turn green!')
             }else if (state=='green'){
                 document.getElementById('latesttime').innerHTML = 'Last Time: '+ (m - startm).toString() + 'ms'
